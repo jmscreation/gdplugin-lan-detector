@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://5nspx1a6bdtm"]
+
+[ext_resource type="Script" uid="uid://ccsv2fk4ks1bg" path="res://scenes/scripts/main.gd" id="1_o5qli"]
+
+[node name="Main" type="MarginContainer" unique_id=1565129825]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5qli")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1791524011]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=415084001]
+layout_mode = 2
+theme_override_constants/separation = 167
+
+[node name="Serve" type="Button" parent="CenterContainer/HBoxContainer" unique_id=1347945983]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Serve"
+
+[node name="Search" type="Button" parent="CenterContainer/HBoxContainer" unique_id=1453759876]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Search"
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Serve" to="." method="_on_serve_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Search" to="." method="_on_search_pressed"]
