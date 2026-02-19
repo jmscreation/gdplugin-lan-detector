@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drmsindjytd03" path="res://scenes/label.gd" id="1_1t5vp"]
 [ext_resource type="Script" uid="uid://dt6vpoy3qf64f" path="res://scenes/client.gd" id="1_4tr0r"]
-[ext_resource type="Script" uid="uid://c17f4t5ilpyfj" path="res://addons/scripts/lan_detector_client.gd" id="1_5f806"]
+[ext_resource type="Script" uid="uid://c17f4t5ilpyfj" path="res://addons/landetector/scripts/lan_detector_client.gd" id="1_5f806"]
 
 [node name="Main" type="MarginContainer" unique_id=1565129825]
 anchors_preset = 15

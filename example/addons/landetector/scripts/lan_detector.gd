@@ -2,8 +2,8 @@
 class_name LANDetector extends Node
 
 
-const static_broadcast_code = 0xEEEEEEEE0000000 # 64bit signed magic broadcast code
-const static_auth_code = 0xFFFFFFFF0000000 # 64bit signed magic authorization code
+const static_broadcast_code = 0xFF00EE00AA # 64bit signed magic broadcast code
+const static_auth_code = 0x00000000AE0080 # 64bit signed magic authorization code
 
 signal on_peer_connected()
 signal on_peer_disconnected(code:ExitReason)
