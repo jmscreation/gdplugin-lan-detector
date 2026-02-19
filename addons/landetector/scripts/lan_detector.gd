@@ -1,6 +1,9 @@
 @abstract
 class_name LANDetector extends Node
 
+const PORT = 4599 # broadcaster port used
+const UDP_PING_INTERVAL = 5500
+const UDP_TIMEOUT = 10000
 
 const static_broadcast_code = 0xEEEEEEEE0000000 # 64bit signed magic broadcast code
 const static_auth_code = 0xFFFFFFFF0000000 # 64bit signed magic authorization code
@@ -38,7 +41,6 @@ enum ExitReason {
 }
 
 var peer_buffer:StreamPeerBuffer = null
-var _cache = PackedByteArray()
 var reason:ExitReason = ExitReason.Unknown
 
 @abstract func is_server() -> bool
@@ -47,18 +49,15 @@ func _process(_delta: float) -> void:
 
 	if peer_connected():
 		for i in range(peer.get_available_packet_count()):
-			_cache.append_array( peer.get_packet() )
-		if !_cache.is_empty():
-			peer_buffer.data_array = _cache
+			peer_buffer.data_array = peer.get_packet()
 			_receive()
-		peer_buffer.clear() # flush all packets when done
-		_cache.clear()
+			peer_buffer.clear() # flush packet data each cycle
 		
-		if Time.get_ticks_msec() - ping_timeout > 5500:
+		if Time.get_ticks_msec() - ping_timeout > UDP_PING_INTERVAL:
 			send_raw(LANMessage.Ping)
 			ping_timeout = Time.get_ticks_msec()
 
-		if Time.get_ticks_msec() - last_ping > 60000:
+		if Time.get_ticks_msec() - last_ping > UDP_TIMEOUT:
 			close_peer(ExitReason.ConnectionLost)
 
 
@@ -107,7 +106,7 @@ func close_peer(code:ExitReason = ExitReason.Unknown):
 	on_peer_disconnected.emit(reason)
 
 func kick_peer():
-	peer.send_raw(LANMessage.Kick)
+	send_raw(LANMessage.Kick)
 	close_peer(ExitReason.Kicked)
 
 # On packets received
