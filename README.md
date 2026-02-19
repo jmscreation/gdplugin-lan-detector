@@ -1,6 +1,9 @@
-## LAN Detector
+# LAN Detector
+<p align="center" width="100%">
+    <img width="15%" src="https://raw.githubusercontent.com/jmscreation/gdplugin-lan-detector/refs/heads/main/logo.png">
+</p>
 
-This plugin quickly and simply establishes a peer to peer connection within the [local broadcast domain](https://en.wikipedia.org/wiki/Broadcast_domain) automatically.
+## This plugin quickly and simply establishes a peer to peer connection within the [local broadcast domain](https://en.wikipedia.org/wiki/Broadcast_domain) automatically.
 
 It's simple to use:
 ### Server
